@@ -12,7 +12,8 @@ import android.widget.Toast;
 public class Reproductor extends AppCompatActivity {
     Intent inRola,intento;
     TextView nombre, autor;
-    int rola, rolaSig;
+    int pos = 0, rola, rolaSig;
+    MainActivity ma = new MainActivity();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,18 +23,19 @@ public class Reproductor extends AppCompatActivity {
         String name = intento.getStringExtra("nombre");
         String aut = intento.getStringExtra("autor");
         rola = intento.getIntExtra("rola",-1);
+        pos = intento.getIntExtra("pos",-1);
         rolaSig = intento.getIntExtra("rolaSig",-1);
         TextView nombre = findViewById(R.id.tvName);
         TextView autor = findViewById(R.id.tvAutor);
         nombre.setText(name);
         autor.setText(aut);
-        Toast.makeText(this,rola+" ",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,pos+" ",Toast.LENGTH_LONG).show();
         //inRola.getIntExtra();
     }
     public void dale(View v){
         /*Intent in = new Intent();
         in.putExtra("rola",R.raw.november_rain);*/
-        inRola.putExtra("rola",rola);
+        inRola.putExtra("pos",pos);
         startService(inRola);
     }
     public void tate(View v){
@@ -41,7 +43,16 @@ public class Reproductor extends AppCompatActivity {
     }
     public void siguiente(View v){
         stopService(inRola);
-        inRola.putExtra("rola",rola);
+        if(pos == ma.rolas.length){
+            pos = 0;
+        }
+        pos = pos+1;
+        //nombre.setText("hola");
+        //autor.setText(ma.rolas[pos].getAutor());
+        inRola.putExtra("pos",pos);
         startService(inRola);
+    }
+    public void jajas(){
+        autor.setText("jajas");
     }
 }

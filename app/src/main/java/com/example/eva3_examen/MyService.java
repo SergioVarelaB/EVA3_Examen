@@ -10,8 +10,9 @@ import android.widget.Toast;
 public class MyService extends Service {
     MediaPlayer mPlayer = null;
     Intent intento;
+    TextView nombre, autor;
     int cancion = 0;
-
+    MainActivity mn = new MainActivity();
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
@@ -20,9 +21,12 @@ public class MyService extends Service {
     @Override
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
-        cancion = intent.getIntExtra("rola",0);
+        cancion = intent.getIntExtra("pos",-1);
+        if(cancion == mn.rolas.length){
+            cancion = 0;
+        }
         Toast.makeText(getApplicationContext(),cancion+"",Toast.LENGTH_LONG).show();
-        mPlayer = MediaPlayer.create(getApplicationContext(), cancion);
+        mPlayer = MediaPlayer.create(getApplicationContext(), mn.rolas[cancion].getRola());
         if (mPlayer != null) {
             mPlayer.start();
         }

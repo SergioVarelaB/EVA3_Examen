@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Rolas[] rolas = {
             new Rolas(R.drawable.unkown,"Guns and Roses","november rain",R.raw.november_rain),
             new Rolas(R.drawable.unkown,"pink floyd","i wish you were here",R.raw.wish_you_were_here),
+            new Rolas(R.drawable.unkown,"Queen","You don't fool me",R.raw.you_dont_fool_me),
+            new Rolas(R.drawable.unkown,"The Beatles","Eleanor Rigby",R.raw.eleanor),
     };
     Intent iReproductor;
     ListView listaClima;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         iReproductor.putExtra("nombre", nombre);
         iReproductor.putExtra("rola", rola);
         iReproductor.putExtra("rolaSig", rolaSig);
+        iReproductor.putExtra("pos", position);
         startActivity(iReproductor);
     }
 }
