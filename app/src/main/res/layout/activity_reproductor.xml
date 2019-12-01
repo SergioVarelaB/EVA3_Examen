@@ -8,7 +8,7 @@
     tools:context=".Reproductor">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/album"
         android:layout_width="match_parent"
         android:layout_height="367dp"
         app:srcCompat="@drawable/unkown" />

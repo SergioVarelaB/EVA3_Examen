@@ -22,10 +22,7 @@ public class MyService extends Service {
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
         cancion = intent.getIntExtra("pos",-1);
-        if(cancion == mn.rolas.length){
-            cancion = 0;
-        }
-        Toast.makeText(getApplicationContext(),cancion+"",Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),cancion+"",Toast.LENGTH_LONG).show();
         mPlayer = MediaPlayer.create(getApplicationContext(), mn.rolas[cancion].getRola());
         if (mPlayer != null) {
             mPlayer.start();
