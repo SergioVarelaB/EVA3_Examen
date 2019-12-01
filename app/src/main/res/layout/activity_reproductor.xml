@@ -1,54 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondoreproductor"
     android:orientation="vertical"
     tools:context=".Reproductor">
 
+    <TextView
+        android:id="@+id/txtViewNowP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:text="Now playing"
+        android:textColor="#CCFFFFFF"
+        android:textSize="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="367dp"
+        android:layout_width="380dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewNowP"
         app:srcCompat="@drawable/unkown" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Pero pusieron la canción"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_width="190dp"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/tvAutor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/play"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvAutor"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:text="El artista k sea"
+        android:textColor="#E6FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+    <SeekBar
+        android:id="@+id/seekBar3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="56dp"
+        android:progressTint="@android:color/white"
+        android:thumbTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAutor" />
+
+    <TextView
+        android:id="@+id/txtViewTiempoInicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="267dp"
+        android:fontFamily="@font/montserrat"
+        android:text="0:00"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar3" />
+
+    <TextView
+        android:id="@+id/txtViewTiempoFin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:fontFamily="@font/montserrat"
+        android:text="3:41"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar3" />
+
+    <ImageView
+        android:id="@+id/imgViewPlay"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
         android:onClick="dale"
-        android:text="Play" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewTiempoInicio"
+        app:srcCompat="@drawable/btnplay" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="tate"
-        android:text="Pause" />
+    <ImageView
+        android:id="@+id/imgViewAtras"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/imgViewPlay"
+        app:layout_constraintHorizontal_bias="0.554"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewTiempoInicio"
+        app:srcCompat="@drawable/btnatras" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/imgViewAtras2"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="64dp"
         android:onClick="siguiente"
-        android:text="Siguiente" />
-</LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgViewPlay"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewTiempoFin"
+        app:srcCompat="@drawable/btnsig" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toStartOf="@+id/imgViewAtras"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewTiempoInicio"
+        app:srcCompat="@drawable/btnrandom" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
