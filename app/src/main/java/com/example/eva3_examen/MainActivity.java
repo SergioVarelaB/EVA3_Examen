@@ -11,10 +11,10 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     Rolas[] rolas = {
-            new Rolas(R.drawable.garafd,"Guns and Roses","November rain",R.raw.november_rain),
-            new Rolas(R.drawable.iwywh,"Pink Floyd","I wish you were here",R.raw.wish_you_were_here),
-            new Rolas(R.drawable.tdfm,"Queen","You don't fool me",R.raw.you_dont_fool_me),
-            new Rolas(R.drawable.beatlesrevolver,"The Beatles","Eleanor Rigby",R.raw.eleanor),
+            new Rolas(R.drawable.garafd,"Guns and Roses","November rain",R.raw.november_rain,556848.0),
+            new Rolas(R.drawable.iwywh,"Pink Floyd","I wish you were here",R.raw.wish_you_were_here,293208.0),
+            new Rolas(R.drawable.tdfm,"Queen","You don't fool me",R.raw.you_dont_fool_me,322752.0),
+            new Rolas(R.drawable.beatlesrevolver,"The Beatles","Eleanor Rigby",R.raw.eleanor,131352.0),
     };
     Intent iReproductor;
     ListView listaClima;
@@ -31,13 +31,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //Toast.makeText(this,rolas[position].getNombre(),Toast.LENGTH_SHORT).show();
         String autor = rolas[position].getAutor();
         String nombre = rolas[position].getNombre();
-        int rola = rolas[position].getRola();
-        int rolaSig = rolas[position+1].getRola();
         iReproductor = new Intent(this,Reproductor.class);
         iReproductor.putExtra("autor", autor);
         iReproductor.putExtra("nombre", nombre);
-        iReproductor.putExtra("rola", rola);
-        iReproductor.putExtra("rolaSig", rolaSig);
         iReproductor.putExtra("pos", position);
         startActivity(iReproductor);
     }

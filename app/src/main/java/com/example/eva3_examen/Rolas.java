@@ -5,6 +5,7 @@ public class Rolas {
     private String autor;
     private String nombre;
     private int rola;
+    private double duracion;
 
     public Rolas(){
         imagen = R.drawable.unkown;
@@ -13,11 +14,12 @@ public class Rolas {
         rola = R.raw.november_rain;
     }
 
-    public Rolas(int imagen, String autor, String nombre,int rola) {
+    public Rolas(int imagen, String autor, String nombre,int rola, double duracion) {
         this.imagen = imagen;
         this.autor = autor;
         this.nombre = nombre;
         this.rola = rola;
+        this.duracion = duracion;
 }
 
     public int getImagen() {
@@ -50,5 +52,13 @@ public class Rolas {
 
     public void setRola(int rola) {
         this.rola = rola;
+    }
+
+    public double getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(double duracion) {
+        this.duracion = duracion;
     }
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.util.Log;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +14,8 @@ public class MyService extends Service {
     MediaPlayer mPlayer = null;
     Intent intento;
     TextView nombre, autor;
+    SeekBar seekBarPosition;
+    int posicion = -1;
     int cancion = 0;
     MainActivity mn = new MainActivity();
 
@@ -26,21 +29,25 @@ public class MyService extends Service {
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
         cancion = intent.getIntExtra("pos", -1);
-        if (cancion == mn.rolas.length) {
+        posicion = intent.getIntExtra("posicion", -1);
+        /*if (cancion == mn.rolas.length) {
             cancion = 0;
-        }
-        //Toast.makeText(getApplicationContext(), cancion + "", Toast.LENGTH_LONG).show();
+        }*/
         mPlayer = MediaPlayer.create(getApplicationContext(), mn.rolas[cancion].getRola());
         if (mPlayer != null) {
+            double dura = mPlayer.getDuration();
+            intent.putExtra("dura", dura);
+            if(posicion != -1) {
+                mPlayer.seekTo(posicion);
+            }
             mPlayer.start();
+            //Toast.makeText(this,dura+"",Toast.LENGTH_LONG).show();
         }
     }
-
     @Override
     public void onCreate() {
         super.onCreate();
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
