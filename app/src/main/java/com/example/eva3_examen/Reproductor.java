@@ -3,7 +3,10 @@ package com.example.eva3_examen;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -20,25 +23,37 @@ public class Reproductor extends AppCompatActivity {
     MainActivity ma = new MainActivity();
     ImageView imgViewPausa, imgViewPlay, album;
     SeekBar seekBarPosition;
+    BroadcastReceiver brReceptor;
     boolean rand = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reproductor);
+        //intento para el servicio
         inRola = new Intent(this, MyService.class);
         intento = getIntent();
 
+        //receptor
+        brReceptor = new miReceptorDifucion();
+        IntentFilter filtro = new IntentFilter("mi_servicio");
+        registerReceiver(brReceptor,filtro);
+
+        //recuperamos los valores de la lista
         String name = intento.getStringExtra("nombre");
         String aut = intento.getStringExtra("autor");
         rola = intento.getIntExtra("rola", -1);
         pos = intento.getIntExtra("pos", -1);
         duracion = ma.rolas[pos].getDuracion();
+
+        // vinculamos en codigo los elementos graficos
         nombre = findViewById(R.id.tvName);
         autor = findViewById(R.id.tvAutor);
         album = findViewById(R.id.album);
         seekBarPosition = findViewById(R.id.seekBarPos);
         txtViewTiempoFin = findViewById(R.id.txtViewTiempoFin);
+
+        //cambiamos la informacion de los elementos graficos
         nombre.setText(name);
         autor.setText(aut);
         txtViewTiempoFin.setText(duracion/60000 + "");
@@ -47,27 +62,12 @@ public class Reproductor extends AppCompatActivity {
         imgViewPlay = findViewById(R.id.imgViewPlay);
         seekBarPosition.setMax((int)duracion);
         seekbarr(pos);
-        /*seekBarPosition.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                stopService(inRola);
-                inRola.putExtra("posicion",progress);
-                startService(inRola);
-            }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });*/
+        //inizialisamos el servicio
         dale();
 
     }
+    //se inicializa el servicio de reproduccion
     public void dale(){
         stopService(inRola);
         if (imgViewPausa.getAlpha() == 0) {
@@ -86,13 +86,17 @@ public class Reproductor extends AppCompatActivity {
         }
     }
 
+    //se inicializa desde el boton
     public void dale(View v) {
         dale();
     }
+
+    //se pausa el servicio
     public void tate(View v) {
         stopService(inRola);
     }
 
+    //siguiente cancion desde boton
     public void siguiente(View v){
         if(rand){
             aleatorio();
@@ -101,7 +105,9 @@ public class Reproductor extends AppCompatActivity {
         }
 
     }
-   public void siguientes() {
+
+    //siguiente cancion
+    public void siguientes() {
         stopService(inRola);
         nombre = findViewById(R.id.tvName);
         autor = findViewById(R.id.tvAutor);
@@ -127,6 +133,8 @@ public class Reproductor extends AppCompatActivity {
             Toast.makeText(this,"error " + pos ,Toast.LENGTH_SHORT).show();
         }
     }
+
+    //aleatorio
     public void aleatorio(){
         stopService(inRola);
         nombre = findViewById(R.id.tvName);
@@ -153,6 +161,8 @@ public class Reproductor extends AppCompatActivity {
             Toast.makeText(this,"error " + newpos ,Toast.LENGTH_SHORT).show();
         }
     }
+
+    //aleatorio desde boton
     public void anterior(View v) {
         stopService(inRola);
         nombre = findViewById(R.id.tvName);
@@ -179,6 +189,8 @@ public class Reproductor extends AppCompatActivity {
             Toast.makeText(this,"error " + pos ,Toast.LENGTH_SHORT).show();
         }
     }
+
+    //comprobamos en que estado se encuentra aleatorio
     public void setAleatorio(View v){
         if(rand){
             rand = false;
@@ -187,10 +199,14 @@ public class Reproductor extends AppCompatActivity {
         }
         Toast.makeText(this,""+rand, Toast.LENGTH_LONG).show();
     }
+
+    //regresamos a la playlist
     public void lista(View v){
         this.finish();
     }
 
+
+    //vinculamos la seekbar y sus metodos
     public void seekbarr(int pos){
         stopService(inRola);
         seekBarPosition.setMax((int)ma.rolas[pos].getDuracion());
@@ -211,5 +227,12 @@ public class Reproductor extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar){
             }
         });
+    }
+    class miReceptorDifucion extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //tv.append(intent.getStringExtra("mensaje"));
+        }
     }
 }

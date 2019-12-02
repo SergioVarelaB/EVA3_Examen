@@ -37,6 +37,10 @@ public class MyService extends Service {
         if (mPlayer != null) {
             double dura = mPlayer.getDuration();
             intent.putExtra("dura", dura);
+            Log.wtf("dura: ", "duracion. " + mPlayer.getDuration()+ " posicion: " + mPlayer.getCurrentPosition());
+            if(mPlayer.getDuration() == mPlayer.getCurrentPosition()){
+                Toast.makeText(this,"se acabo",Toast.LENGTH_SHORT).show();
+            }
             if(posicion != -1) {
                 mPlayer.seekTo(posicion);
             }
@@ -56,4 +60,5 @@ public class MyService extends Service {
             mPlayer.release();
         }
     }
+
 }
