@@ -21,10 +21,10 @@ public class Reproductor extends AppCompatActivity {
     int pos = 0, rola;
     double duracion;
     MainActivity ma = new MainActivity();
-    ImageView imgViewPausa, imgViewPlay, album;
+    ImageView imgViewPausa, imgViewPlay, album, imgViewRandom, imgViewRandomVerde;
     SeekBar seekBarPosition;
     BroadcastReceiver brReceptor;
-    boolean rand = true;
+    boolean rand = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +60,8 @@ public class Reproductor extends AppCompatActivity {
         album.setImageResource(ma.rolas[pos].getImagen());
         imgViewPausa = findViewById(R.id.imgViewPausa);
         imgViewPlay = findViewById(R.id.imgViewPlay);
+        imgViewRandom = findViewById(R.id.imgViewRandom);
+        imgViewRandomVerde = findViewById(R.id.imgViewRandomVerde);
         seekBarPosition.setMax((int)duracion);
         seekbarr(pos);
 
@@ -192,10 +194,14 @@ public class Reproductor extends AppCompatActivity {
 
     //comprobamos en que estado se encuentra aleatorio
     public void setAleatorio(View v){
-        if(rand){
+        if(rand == true && imgViewRandom.getAlpha() == 0){
             rand = false;
-        }else{
+            imgViewRandom.animate().alpha(1).setDuration(500);
+            imgViewRandomVerde.animate().alpha(0).setDuration(500);
+        }else if (rand == false && imgViewRandomVerde.getAlpha() == 0){
             rand = true;
+            imgViewRandom.animate().alpha(0).setDuration(500);
+            imgViewRandomVerde.animate().alpha(1).setDuration(500);
         }
         Toast.makeText(this,""+rand, Toast.LENGTH_LONG).show();
     }
