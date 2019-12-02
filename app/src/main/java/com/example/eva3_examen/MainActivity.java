@@ -11,10 +11,10 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     Rolas[] rolas = {
-            new Rolas(R.drawable.unkown,"Guns and Roses","November rain",R.raw.november_rain),
-            new Rolas(R.drawable.unkown,"Pink Floyd","I wish you were here",R.raw.wish_you_were_here),
-            //new Rolas(R.drawable.unkown,"Queen","You don't fool me",R.raw.you_dont_fool_me),
-            //new Rolas(R.drawable.unkown,"The Beatles","Eleanor Rigby",R.raw.eleanor),
+            new Rolas(R.drawable.garafd,"Guns and Roses","November rain",R.raw.november_rain),
+            new Rolas(R.drawable.iwywh,"Pink Floyd","I wish you were here",R.raw.wish_you_were_here),
+            new Rolas(R.drawable.tdfm,"Queen","You don't fool me",R.raw.you_dont_fool_me),
+            new Rolas(R.drawable.beatlesrevolver,"The Beatles","Eleanor Rigby",R.raw.eleanor),
     };
     Intent iReproductor;
     ListView listaClima;

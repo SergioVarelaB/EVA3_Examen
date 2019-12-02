@@ -23,7 +23,7 @@ public class Reproductor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reproductor);
-        inRola = new Intent(this, MyService.class);
+        /*inRola = new Intent(this, MyService.class);
         intento = getIntent();
         String name = intento.getStringExtra("nombre");
         String aut = intento.getStringExtra("autor");
@@ -36,7 +36,7 @@ public class Reproductor extends AppCompatActivity {
         autor.setText(aut);
         //Toast.makeText(this, pos + " ", Toast.LENGTH_LONG).show();
         imgViewPausa = findViewById(R.id.imgViewPausa);
-        imgViewPlay = findViewById(R.id.imgViewPlay);
+        imgViewPlay = findViewById(R.id.imgViewPlay);*/
 
     }
 
@@ -90,10 +90,5 @@ public class Reproductor extends AppCompatActivity {
         //autor.setText(ma.rolas[pos].getAutor());
         inRola.putExtra("pos", pos);
         startService(inRola);
-    }
-
-
-    public void jajas() {
-        autor.setText("jajas");
     }
 }
