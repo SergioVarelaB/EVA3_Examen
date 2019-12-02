@@ -109,7 +109,7 @@
         app:srcCompat="@drawable/btnpausa" />
 
     <ImageView
-        android:id="@+id/imgStart"
+        android:id="@+id/imgViewPlay"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="20dp"
@@ -127,7 +127,7 @@
         android:layout_marginStart="64dp"
         android:layout_marginTop="24dp"
         android:onClick="anterior"
-        app:layout_constraintEnd_toStartOf="@+id/imgStart"
+        app:layout_constraintEnd_toStartOf="@+id/imgViewPlay"
         app:layout_constraintHorizontal_bias="0.554"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtViewTiempoInicio"
@@ -141,7 +141,7 @@
         android:layout_marginEnd="64dp"
         android:onClick="siguiente"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgStart"
+        app:layout_constraintStart_toEndOf="@+id/imgViewPlay"
         app:layout_constraintTop_toBottomOf="@+id/txtViewTiempoFin"
         app:srcCompat="@drawable/btnsig" />
 
