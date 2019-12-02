@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/album"
         android:layout_width="380dp"
         android:layout_height="280dp"
         android:layout_marginTop="16dp"
@@ -42,7 +42,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/album" />
 
     <TextView
         android:id="@+id/tvAutor"
@@ -154,6 +154,7 @@
         app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtViewTiempoInicio"
+        android:onClick="setAleatorio"
         app:srcCompat="@drawable/btnrandom" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
